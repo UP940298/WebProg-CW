@@ -1,0 +1,266 @@
+/*
+    CSS for "Windows" theme.
+*/
+
+
+@font-face {
+    font-family: 'MS';
+    src: url('../fonts/MS.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MSbold';
+    src: url('../fonts/MSbold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#startBar {
+    bottom: 10px;
+    position: fixed;
+    background: #d2d2d2;
+    height: 35px;
+    width: 100%;
+    margin: -10 -8;
+    box-shadow: inset 0px 32px 0px -30px #FFFFFF;
+    font-family: 'MS';
+    border-radius: 0%;
+}
+
+#startButt {
+    height: 30px;
+    width: 80px;
+    margin: 3px 5px;
+    border-radius: 0%;
+}
+
+#startText {
+    font-size: 17px;
+    font-family: "MSbold";
+    margin: -18px 0px 0px -7px;
+    position: absolute; 
+}
+
+#windowsLogo {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    margin: -12px 0px 0px -36px;
+}
+
+#barTime {
+    height: 30px;
+    width: 80px;
+    background: #d2d2d2;
+    float: right;
+    margin: 3px 5px;
+    box-shadow: inset 2px 2px 0px 0px gray,
+                inset -2px -2px 0px 0px #FFFFFF;
+}
+
+#time {
+    position: absolute;
+    margin: 8px 0px 0px 13px;
+}
+
+#comparisonWindow {
+    background: #d2d2d2;
+    box-shadow: inset 3px 3px 0px 0px #FFFFFF, 2px 2px 0px 2px #3b3b3b;
+    height: 600px;
+    width: 800px;
+    position: relative;
+    left: 30%;
+}
+
+#comparisonWindowBar {
+    width: 99.3%;
+    background: #051e80;
+    height: 30px;
+    display: inline-block;
+    margin: 3px 0px 0px 3px;
+    color: white;
+    font-family: "MS";
+    line-height: 30px;
+    text-indent: 5px;
+}
+
+#under {
+    border-bottom: 1px solid black;
+}
+
+#comparisonWindowFile {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 6.5%;
+    font-size: 16px;
+    font-family: 'MS';
+    left: 1%;
+}
+
+#comparisonWindowBrowse {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 6.5%;
+    font-size: 16px;
+    font-family: 'MS';
+    left: 7%;
+}
+
+#comparisonWindowHelp {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 6.5%;
+    font-size: 16px;
+    font-family: 'MS';
+    left: 16%;
+}
+
+#comparisonWindowX {
+    position: absolute;
+    left: 96%;
+    margin: 7px 0px 0px 5px;
+    border-radius: 0%;
+    font-family: "Arial";
+    font-size: 14px;
+    top: 0%;
+}
+
+#comparisonWindow- {
+    position: absolute;
+    left: 93%;
+    margin: 7px 0px 0px 3px;
+    border-radius: 0%;
+    font-family: "Arial";
+    font-size: 14px;
+    top: 0%;
+    width: 20px;
+}
+
+#openWindow {
+    height: 30px;
+    width: 200px;
+    background: #e9e9e9;
+    box-shadow: inset 2px 2px 0px 0px gray, inset -2px -2px 0px 0px #FFFFFF;
+    z-index: 1;
+    left: 7%;
+    position: absolute;
+    margin: 3px 0px;
+    top: 0;
+}
+
+#minWindow {
+    height: 30px;
+    width: 200px;
+    background: #d2d2d2;
+    box-shadow: inset -2px -2px 0px 0px gray, inset 2px 2px 0px 0px #FFFFFF;
+    z-index: 1;
+    left: 7%;
+    position: absolute;
+    margin: 3px 0px;
+    top: 0;
+}
+
+#windowName {
+    font-size: 15px;
+    margin: 0px 8px;
+    line-height: 25px;
+    font-family: 'MSbold';
+}
+
+#fileCountBox {
+    box-shadow: inset 2px 2px 0px 0px gray, inset -2px -2px 0px 0px #FFFFFF;
+    width: 98%;
+    height: 30px;
+    top: 0%;
+    position: relative;
+    margin: 3px 0px 0px 8px;
+}
+
+#fileCount {
+    font-size: 20px;
+    line-height: 34px;
+    margin: 0px 0px 0px 6px;
+}
+
+/*
+    CSS for upload files.
+*/
+
+
+body {
+    background: rgb(47, 124, 118);
+    color: black;
+    font-family: 'MS';
+    position: fixed;
+}
+
+#dropZone {
+    width: 98%;
+    height: 83%;
+    background: white;
+    margin: 30px 0px 0px 8px;
+    box-shadow: inset 4px 4px 0px 0px rgb(95, 95, 95), inset -4px -4px 0px 0px #cacaca;
+}
+
+#manualInput {
+    display: none;
+}
+
+#customFileUpload {
+    font-size: 25px;
+    font-family: 'MS';
+    height: 50px;
+    width: 150px;
+    background: #d2d2d2;
+    display: inline-block;
+    position: relative;
+    box-shadow: inset 2px 2px 0px 0px #FFFFFF, 2px 2px 0px 1px #414141;
+    margin: 10px 0% 0% 15px;
+    text-align: center;
+    line-height: 50px;
+}
+
+#customFileUpload:active {
+    box-shadow: inset 2px 2px 0px 0px gray, inset -2px -2px 0px 0px gray;
+}
+
+/*
+    CSS for displaying files uploaded.
+*/
+
+#fileLoadedDiv {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.fileDivContainer {
+    flex-basis: 20%;
+    margin: 1em 1em;
+    max-width: 15%;
+}
+
+.fileIconStyle {
+    position: relative;
+    float: right;
+    height: 100px;
+    width: 80px;
+    font-size: 6px;
+    text-align: justify;
+    padding: 2px 5px;
+    box-shadow: -3px 3px 7px 0px black;
+    background: white;
+    line-height: 15px;
+}
+
+
+.fileTextStyle {
+    position: relative;
+    font-size: 15px;
+    left: 8%;
+    top: 10;
+}

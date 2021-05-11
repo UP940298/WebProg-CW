@@ -1,0 +1,22 @@
+{
+  "name": "webprog-cw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UP940298/WebProg-CW.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UP940298/WebProg-CW/issues"
+  },
+  "homepage": "https://github.com/UP940298/WebProg-CW#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
