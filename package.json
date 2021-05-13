@@ -2,7 +2,7 @@
   "name": "webprog-cw",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/UP940298/WebProg-CW#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mysql": "github:mysqljs/mysql",
+    "sqlite3": "^5.0.2"
   }
 }

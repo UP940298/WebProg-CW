@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" type="text/css" href="../STYLE/mainStyle.css">
+
+<head>
+    <title>Login page</title>
+</head>
+
+<body>
+    <div id="loginWindow">
+        <span id="loginWindowBar">User login</span>
+        <button id="loginHelpButton">?</button>
+
+        <form action="auth" method="POST">
+            <div id="loginInput">
+                <label for="userLogin" id="labelUser"><span id="under">U</span>ser name:</label>
+                <input id="userLogin" type="text" name="username" required>
+
+                <label for="userLogin" id="labelPass"><span id="under">P</span>assword:</label>
+                <input id="passLogin" type="password" name="password" required>
+
+                <input id="login" type="submit" value="OK">
+            </div>
+        </form>
+    </div>
+
+    <div id="loginHelp" style="display: none;">
+        <div id="loginHelpWindow">
+            <span id="loginHelpBar">Help</span>
+            <div id="loginHelpPage">
+                <h1>Using the plagiarism checker:</h1>
+                <ol>
+                    <li>
+                    </li>
+                    <li></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="application/javascript" src="../SCRIPTS/loginHandler.js"></script>

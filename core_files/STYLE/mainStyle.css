@@ -33,6 +33,7 @@
     width: 80px;
     margin: 3px 5px;
     border-radius: 0%;
+    float: left;
 }
 
 #startText {
@@ -62,6 +63,49 @@
 #time {
     position: absolute;
     margin: 8px 0px 0px 13px;
+}
+
+#helpWindow {
+    background: #d2d2d2;
+    box-shadow: inset 3px 3px 0px 0px #FFFFFF, 2px 2px 0px 2px #3b3b3b;
+    height: 500px;
+    width: 300px;
+    position: relative;
+    left: 125%;
+    bottom: 550px;
+}
+
+#helpBar {
+    width: 98.3%;
+    background: #051e80;
+    height: 30px;
+    display: inline-block;
+    margin: 3px 0px 0px 3px;
+    color: white;
+    font-family: "MS";
+    line-height: 30px;
+    text-indent: 5px;
+}
+
+#helpPage {
+    width: 96%;
+    height: 89%;
+    background: rgb(255, 246, 205);
+    margin: 7px 0px 0px 8px;
+    box-shadow: inset 4px 4px 0px 0px rgb(95, 95, 95), inset -4px -4px 0px 0px #cacaca;
+    padding-top: 10px;
+}
+
+#helpPage h1 {
+    font-size: 18px;
+    margin: 0% 0px 0px 10px;
+}
+
+#helpPage li {
+    margin: 0% 0px 0px 10px;
+    padding: 8%;
+    text-align: justify;
+    font-size: 13px;
 }
 
 #comparisonWindow {
@@ -99,24 +143,26 @@
     left: 1%;
 }
 
-#comparisonWindowBrowse {
+#comparisonWindowHelp {
     background: none;
     border: none;
     position: absolute;
-    top: 6.5%;
+    top: 6.6%;
     font-size: 16px;
     font-family: 'MS';
     left: 7%;
 }
 
-#comparisonWindowHelp {
-    background: none;
-    border: none;
-    position: absolute;
-    top: 6.5%;
-    font-size: 16px;
-    font-family: 'MS';
-    left: 16%;
+#comparisonWindowFile:hover{
+    background-color: #adadad;
+}
+
+#comparisonWindowBrowse:hover{
+    background-color: #adadad;
+}
+
+#comparisonWindowHelp:hover{
+    background-color: #adadad;
 }
 
 #comparisonWindowX {
@@ -145,11 +191,8 @@
     width: 200px;
     background: #e9e9e9;
     box-shadow: inset 2px 2px 0px 0px gray, inset -2px -2px 0px 0px #FFFFFF;
-    z-index: 1;
-    left: 7%;
-    position: absolute;
-    margin: 3px 0px;
-    top: 0;
+    float: left;
+    margin: 3px 0px 0px 20px;
 }
 
 #minWindow {
@@ -157,11 +200,8 @@
     width: 200px;
     background: #d2d2d2;
     box-shadow: inset -2px -2px 0px 0px gray, inset 2px 2px 0px 0px #FFFFFF;
-    z-index: 1;
-    left: 7%;
-    position: absolute;
-    margin: 3px 0px;
-    top: 0;
+    float: left;
+    margin: 3px 0px 0px 20px;
 }
 
 #windowName {
@@ -228,6 +268,30 @@ body {
     box-shadow: inset 2px 2px 0px 0px gray, inset -2px -2px 0px 0px gray;
 }
 
+#fileMenu {
+    height: 59px;
+    width: 120px;
+    position: absolute;
+    font-size: 12px;
+    top: 10.5%;
+    left: 0%;
+    box-shadow: inset 3px 3px 0px 0px #FFFFFF, 2px 2px 0px 2px #3b3b3b;
+}
+
+#fileMenu label, #fileMenu span {
+    background-color: #d2d2d2;
+    color: black;
+    display: block;
+    padding: 10px;
+    margin: 0px 0px 0px 3px;
+    height: 16%;
+}
+
+#fileMenu span:hover, #fileMenu label:hover {
+    background-color: #adadad;
+}
+
+
 /*
     CSS for displaying files uploaded.
 */
@@ -239,9 +303,9 @@ body {
 }
 
 .fileDivContainer {
-    flex-basis: 20%;
-    margin: 1em 1em;
-    max-width: 15%;
+    flex-basis: 25%;
+    margin: 1em 3em;
+    max-width: 12%;
 }
 
 .fileIconStyle {
@@ -261,6 +325,139 @@ body {
 .fileTextStyle {
     position: relative;
     font-size: 15px;
-    left: 8%;
+    left: 6%;
     top: 10;
+}
+
+/*
+    CSS for the login page.
+*/
+
+body {
+    background: rgb(47, 124, 118);
+    color: black;
+    font-family: 'MS';
+}
+
+#loginWindow {
+    background: #d2d2d2;
+    height: 300px;
+    width: 600px;
+    box-shadow: inset 3px 3px 0px 0px #FFFFFF, 2px 2px 0px 2px #3b3b3b;
+    left: 70%;
+    position: relative;
+    margin-top: 30%;
+}
+
+#loginWindowBar {
+    width: 98.9%;
+    background: #051e80;
+    height: 30px;
+    display: inline-block;
+    margin: 4px 0px 50px 3px;
+    color: white;
+    line-height: 30px;
+    text-indent: 5px;
+}
+
+#loginHelpButton {
+    position: absolute;
+    left: 94%;
+    margin: 8px 0px 0px 5px;
+    border-radius: 0%;
+    font-family: "Arial";
+    font-size: 14px;
+    top: 0%;
+}
+
+#loginInput {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+#loginInput input {
+    width: 200px;
+    left: 32%;
+    position: relative;
+    margin-bottom: 18px;
+    font-size: 20px;
+    font-family: 'MS';
+    padding: 5px 0px 0px 5px;
+}
+
+#login {
+    width: 100px !important;
+    font-size: 15px !important;
+    margin: 0px 0px 0px 50px;
+}
+
+#loginInput label {
+    position: absolute;
+}
+
+#labelUser {
+    margin: 3px 0px 0px 105px;
+}
+
+#labelPass {
+    margin: 53px 0px 0px 105px;
+}
+
+input[type=text] {
+    border-radius: 0%;
+    box-shadow: inset 2px 2px 0px 0px black, 1px 1px 0px 0px #FFFFFF;
+}
+
+input[type=password] {
+    border-radius: 0%;
+    box-shadow: inset 2px 2px 0px 0px black, 1px 1px 0px 0px #FFFFFF;
+}
+
+input[type=submit] {
+    border-radius: 0%;
+    box-shadow: 1px 1px 0px 1px black, 0px 0px 0px 1px black;
+}
+
+#loginHelpWindow {
+    background: #d2d2d2;
+    box-shadow: inset 3px 3px 0px 0px #FFFFFF, 2px 2px 0px 2px #3b3b3b;
+    height: 500px;
+    width: 300px;
+    position: relative;
+    left: 180%;
+    bottom: 320px;
+}
+
+#loginHelpBar {
+    width: 98.3%;
+    background: #051e80;
+    height: 30px;
+    display: inline-block;
+    margin: 3px 0px 0px 3px;
+    color: white;
+    font-family: "MS";
+    line-height: 30px;
+    text-indent: 5px;
+}
+
+#loginHelpPage {
+    width: 96%;
+    height: 89%;
+    background: rgb(255, 246, 205);
+    margin: 7px 0px 0px 8px;
+    box-shadow: inset 4px 4px 0px 0px rgb(95, 95, 95), inset -4px -4px 0px 0px #cacaca;
+    padding-top: 10px;
+}
+
+#loginHelpPage h1 {
+    font-size: 18px;
+    margin: 0% 0px 0px 10px;
+}
+
+#loginHelpPage li {
+    margin: 0% 0px 0px 10px;
+    padding: 8%;
+    text-align: justify;
+    font-size: 13px;
 }

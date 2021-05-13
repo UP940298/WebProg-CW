@@ -3,24 +3,34 @@
 <link rel="stylesheet" type="text/css" href="../STYLE/mainStyle.css">
 
 <head>
-
+    <title>
+        Plagiarism detector
+    </title>
 </head>
 
 <body onload="time();">
 
     <div id="comparisonWindow" style="visibility: hidden;">
+
         <span id="comparisonWindowBar">Plagiarism Checker</span>
+
         <button id="comparisonWindowFile"><span id="under">F</span>ile</button>
-        <button id="comparisonWindowBrowse"><span id="under">B</span>rowse</button>
+        <div id="fileMenu" style="display: none;">
+            <span>Run detector</span>
+            <label>
+                <input type="file" id="manualInput" oninput="manualInputFile();" multiple>
+                Upload files
+            </label>
+        </div>
+
         <button id="comparisonWindowHelp"><span id="under">H</span>elp</button>
+
         <button id="comparisonWindowX">X</button>
+
         <button id="comparisonWindow-">-</button>
+
         <div id="dropZone" ondrop="dropFile(event);" ondragover="dragOverFile(event);">
             <div>
-                <label id="customFileUpload">
-                    <input type="file" id="manualInput" oninput="manualInputFile();" multiple>
-                    Browse files
-                </label>
                 <div id="fileLoadedDiv">
                 </div>
             </div>
@@ -30,6 +40,19 @@
         </div>
     </div>
 
+    <div id="help" style="display: none;">
+        <div id="helpWindow">
+            <span id="helpBar">Help</span>
+            <div id="helpPage">
+                <h1>Using the plagiarism checker:</h1>
+                <ol>
+                    <li>
+                    </li>
+                    <li></li>
+                </ol>
+            </div>
+        </div>
+    </div>
 </body>
 
 <footer>
@@ -45,10 +68,10 @@
 </footer>
 
 <script type="application/javascript" src="../SCRIPTS/detectAlgo.js"></script>
+<script type="application/javascript" src="../SCRIPTS/windowsHandler.js"></script>
 <script type="application/javascript" src="../SCRIPTS/uploadFileScript.js"></script>
 <script type="application/javascript" src="../SCRIPTS/binary.js"></script>
 <script type="application/javascript" src="../SCRIPTS/time.js"></script>
-<script type="application/javascript" src="../SCRIPTS/windowsHandler.js"></script>
 
 
 </html>
