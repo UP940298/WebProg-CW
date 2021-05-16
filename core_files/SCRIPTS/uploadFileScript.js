@@ -197,3 +197,34 @@ function intoObject(file, item) {
     }
     fileObject.push(storeFile);
 }
+
+function showStoredFiles(file) {
+    let storedFileDiv = document.createElement('div');
+    let storedFileIcon = document.createElement('span');
+    let storedFileText = document.createElement('span');
+
+    storedFileText.innerHTML = file.name;
+
+    storedFileIcon.innerHTML = convert(file.name);
+
+    storedFileDiv.classList.add("fileDivContainer");
+
+    /*
+    storedFileDiv.addEventListener('click', function () {
+
+        if (fileLoadedDiv.querySelector('#chosenOne') == null) {
+            manualFileDiv.id = 'chosenOne';
+        } else {
+            manualFileDiv.id = '';
+        }
+        isChosen(fileObject);
+    });
+    */
+
+    storedFileIcon.classList.add("fileIconStyle");
+    storedFileText.classList.add("fileTextStyle");
+
+    storedFileDiv.appendChild(storedFileIcon);
+    storedFileDiv.appendChild(storedFileText);
+    fileLoadedDiv.appendChild(storedFileDiv);
+}

@@ -1,4 +1,5 @@
 const stringSimilarity = require('string-similarity');
+const dbfiles = require('../database_files/database_connect');
 
 function compareFiles(file) {
     let mainFile = [];
@@ -7,6 +8,7 @@ function compareFiles(file) {
     let total = 0;
 
     let fileObject = JSON.parse(file);
+    dbfiles.takeFileObject(fileObject);
 
     for (let item in fileObject) {
         if (fileObject[item].chosen) {
@@ -16,8 +18,10 @@ function compareFiles(file) {
     }
 
     for (let i = 1; i < total; i++) {
+
         let len1 = 0;
         let len2 = 0;
+
         if (mainFile.length > fileObject[i].file.length) {
             len1 = fileObject[i].file.length;
             len2 = mainFile.length;
@@ -25,17 +29,18 @@ function compareFiles(file) {
             len = mainFile.length;
             len2 = fileObject[i].file.length;
         }
+
         for (let j = 0; j < len1; j++) {
             for (let k = 0; k < len2; k++) {
-                console.log(mainFile[j], fileObject[i].file[j]);
-                console.log(stringSimilarity.compareTwoStrings(mainFile[j], fileObject[i].file[j]))
                 sumSim += stringSimilarity.compareTwoStrings(mainFile[j], fileObject[i].file[j]);
             }
         }
+
         sumSimArr.push(sumSim);
     }
 
     console.log(" arr: " + sumSimArr);
+
     return sumSimArr;
 }
 
