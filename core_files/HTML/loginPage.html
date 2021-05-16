@@ -2,7 +2,10 @@
 
 <link rel="stylesheet" type="text/css" href="../STYLE/mainStyle.css">
 
+
 <head>
+    <meta name="google-signin-client_id"
+        content="694851134796-76a41j9ncro012flr2ha74sssapha354.apps.googleusercontent.com">
     <title>Login page</title>
 </head>
 
@@ -10,33 +13,70 @@
     <div id="loginWindow">
         <span id="loginWindowBar">User login</span>
         <button id="loginHelpButton">?</button>
+        <script>
+            document.getElementById('loginHelpButton').addEventListener('click', function () {
+                let helpWindow = document.getElementById('loginHelp');
+                if (helpWindow.style.display == 'none') {
+                    helpWindow.style.display = 'block';
+                } else {
+                    helpWindow.style.display = 'none';
+                }
+            });
 
-        <form action="auth" method="POST">
-            <div id="loginInput">
-                <label for="userLogin" id="labelUser"><span id="under">U</span>ser name:</label>
-                <input id="userLogin" type="text" name="username" required>
+        </script>
 
-                <label for="userLogin" id="labelPass"><span id="under">P</span>assword:</label>
-                <input id="passLogin" type="password" name="password" required>
+        <div id="loginInput">
+            <label for="userLogin" id="labelUser"><span id="under">U</span>ser name:</label>
+            <input id="userLogin" type="text" name="username" required>
+            <div id="customSign" class="login"><span>OK</span></div>
+        </div>
 
-                <input id="login" type="submit" value="OK">
-            </div>
-        </form>
+        <script>
+            window.onload = function () {
+
+                gapi.load('auth2', function () {
+
+                    var auth2 = gapi.auth2.init({
+                        client_id: '694851134796-76a41j9ncro012flr2ha74sssapha354.apps.googleusercontent.com',
+                        cookiepolicy: 'single_host_origin',
+                        scope: 'profile'
+                    });
+
+                    auth2.attachClickHandler(element, {},
+                        function (googleUser) {
+                            if (googleUser) {
+                                console.log('Successful sign in.');
+                                window.location.replace('http://localhost:8080/home');
+                            } else {
+                                console.log('Failed sign in.');
+                            }
+                        });
+                });
+
+                element = document.getElementById('customSign');
+            }
+        </script>
     </div>
 
     <div id="loginHelp" style="display: none;">
         <div id="loginHelpWindow">
             <span id="loginHelpBar">Help</span>
             <div id="loginHelpPage">
-                <h1>Using the plagiarism checker:</h1>
-                <ol>
+                <h1>Using the login page:</h1>
+                <ul>
                     <li>
+                        Please enter a username and then click OK.
                     </li>
-                    <li></li>
-                </ol>
+                    <li>
+                        A google window will pop-up. Please sign in using a valid google account.
+                    </li>
+                    <li>
+                        This will then redirect you to the main page.
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </body>
 
-<script type="application/javascript" src="../SCRIPTS/loginHandler.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>

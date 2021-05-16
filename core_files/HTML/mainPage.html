@@ -6,6 +6,8 @@
     <title>
         Plagiarism detector
     </title>
+    <meta name="google-signin-client_id"
+        content="694851134796-76a41j9ncro012flr2ha74sssapha354.apps.googleusercontent.com">
 </head>
 
 <body onload="time();">
@@ -15,10 +17,10 @@
         <span id="comparisonWindowBar">Plagiarism Checker</span>
 
         <button id="comparisonWindowFile"><span id="under">F</span>ile</button>
-        <div id="fileMenu" style="display: none;">
+        <div id="fileMenu" style="visibility: hidden;">
             <span>Run detector</span>
             <label>
-                <input type="file" id="manualInput" oninput="manualInputFile();" multiple>
+                <input type="file" id="manualInput" oninput="manualInputFile(); getFile();" multiple>
                 Upload files
             </label>
         </div>
@@ -40,18 +42,48 @@
         </div>
     </div>
 
-    <div id="help" style="display: none;">
+    <div id="help" style="visibility: hidden;">
         <div id="helpWindow">
             <span id="helpBar">Help</span>
             <div id="helpPage">
                 <h1>Using the plagiarism checker:</h1>
-                <ol>
-                    <li>
-                    </li>
+                <ul>
+                    <li>To use, click on File (either by clicking or pressing F) and select "Upload files". A window
+                        will appear, select all of the files you wish to use (you can select them all at once or upload
+                        individually) Alternatively, drag and drop all of the files into the window.</li>
+                    <li>Once they are uploaded and are appearing in the window, please click on the main file that is
+                        being compared. This file will be highlighted to show it is the "main" file. Then click on the
+                        File button again and select "Run detector".</li>
                     <li></li>
-                </ol>
+                </ul>
             </div>
         </div>
+    </div>
+
+    <button id="a">butt</button>
+
+    <div>
+        <div id="startMenu" style="visibility: hidden;">
+            <div id='plagButton' style="padding-top: 10px;"><span>Plagiarism Checker</span></div>
+            <span id="line"></span>
+            <div style="padding-top: 10px; top: -20px;"><span onclick="signOut();">Sign out</span></div>
+            <span id="decal"></span>
+        </div>
+        <script>
+            function onLoad() {
+                gapi.load('auth2', function () {
+                    gapi.auth2.init();
+                });
+            }
+
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.log('User signed out');
+                    window.location.replace('http://localhost:8080/');
+                });
+            }
+        </script>
     </div>
 </body>
 
@@ -71,7 +103,6 @@
 <script type="application/javascript" src="../SCRIPTS/windowsHandler.js"></script>
 <script type="application/javascript" src="../SCRIPTS/uploadFileScript.js"></script>
 <script type="application/javascript" src="../SCRIPTS/binary.js"></script>
-<script type="application/javascript" src="../SCRIPTS/time.js"></script>
-
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
 </html>

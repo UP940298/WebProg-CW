@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "setup": "node ./core_files/database_files/database_connect.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "mysql": "github:mysqljs/mysql",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.2",
+    "string-similarity": "^4.0.4",
+    "ws": "^7.4.5"
   }
 }

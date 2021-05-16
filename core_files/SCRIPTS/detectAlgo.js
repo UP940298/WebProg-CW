@@ -1,8 +1,19 @@
-let arrayOfFiles = [];
+function sortFiles(fileObject) {
+    const ws = new WebSocket("ws://" + window.location.hostname + ":8081/");
+    ws.binaryType = 'arraybuffer';
 
-function sortFiles(cleanFile) {
-}
+    console.log(fileObject);
 
-function compareFiles(main, compared) {
+    function toServer() {
+        ws.send(JSON.stringify(fileObject));
+    }
+
+    function fromServer(e) {
+        console.log("detect: " + JSON.parse(e.data));
+    }
+
+    const a = document.getElementById('a');
+    a.addEventListener("click", toServer);
+    ws.addEventListener("message", fromServer);
 
 }

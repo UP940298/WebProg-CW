@@ -1,5 +1,5 @@
 /*
-    CSS for "Windows" theme.
+    CSS for main page.
 */
 
 
@@ -16,6 +16,14 @@
     font-style: normal;
 }
 
+body {
+    background: rgb(47, 124, 118);
+    color: black;
+    font-family: 'MS';
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
 #startBar {
     bottom: 10px;
     position: fixed;
@@ -28,12 +36,69 @@
     border-radius: 0%;
 }
 
+#startMenu {
+    background: #d2d2d2;
+    box-shadow: inset 3px 3px 0px 0px #FFFFFF, 2px 2px 0px 2px #3b3b3b;
+    height: 100px;
+    width: 230px;
+    position: fixed;
+    left: 2px;
+    margin: 17px 0px 0px 0px;
+    z-index: 1;
+}
+
+#startMenu div {
+    font-size: 18px;
+    margin-bottom: 20px;
+    left: 55px;
+    position: relative;
+    height: 40px;
+    width: 175px;
+    text-align:center;
+}
+
+#line {
+    width: 175px;
+    height: 1px;
+    background-color: black;
+    display: inline-block;
+    margin: -20px 0px 0px 55px;
+    position: relative;
+    box-shadow: 1px 1px 1px 1px #3b3b3b;
+}
+
+#decal {
+    position: relative;
+    display: inline-block;
+    background-color: #b1b1b1;
+    margin: -140px 1px 1px 0px;
+    width: 55px;
+    z-index: 2;
+    height: 100px;
+}
+
+#startMenu div:hover{
+    background-color: #051e80;
+    color: white;
+    cursor: pointer;
+}
+
 #startButt {
     height: 30px;
     width: 80px;
     margin: 3px 5px;
     border-radius: 0%;
     float: left;
+}
+
+#clickedStartButt {
+    height: 30px;
+    width: 80px;
+    margin: 3px 5px;
+    border-radius: 0%;
+    float: left;
+    background-color: #a8a8a8;
+    box-shadow: inset 2px 2px 0px 0px gray;
 }
 
 #startText {
@@ -71,8 +136,14 @@
     height: 500px;
     width: 300px;
     position: relative;
-    left: 125%;
+    left: 55%;
     bottom: 550px;
+}
+
+#help {
+    height: 50%;
+    width: 50%;
+    float: right;
 }
 
 #helpBar {
@@ -103,9 +174,9 @@
 
 #helpPage li {
     margin: 0% 0px 0px 10px;
-    padding: 8%;
+    padding: 1% 5% 1% 0%;
     text-align: justify;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 #comparisonWindow {
@@ -114,7 +185,7 @@
     height: 600px;
     width: 800px;
     position: relative;
-    left: 30%;
+    left: 20%;
 }
 
 #comparisonWindowBar {
@@ -211,32 +282,9 @@
     font-family: 'MSbold';
 }
 
-#fileCountBox {
-    box-shadow: inset 2px 2px 0px 0px gray, inset -2px -2px 0px 0px #FFFFFF;
-    width: 98%;
-    height: 30px;
-    top: 0%;
-    position: relative;
-    margin: 3px 0px 0px 8px;
-}
-
-#fileCount {
-    font-size: 20px;
-    line-height: 34px;
-    margin: 0px 0px 0px 6px;
-}
-
 /*
     CSS for upload files.
 */
-
-
-body {
-    background: rgb(47, 124, 118);
-    color: black;
-    font-family: 'MS';
-    position: fixed;
-}
 
 #dropZone {
     width: 98%;
@@ -250,24 +298,6 @@ body {
     display: none;
 }
 
-#customFileUpload {
-    font-size: 25px;
-    font-family: 'MS';
-    height: 50px;
-    width: 150px;
-    background: #d2d2d2;
-    display: inline-block;
-    position: relative;
-    box-shadow: inset 2px 2px 0px 0px #FFFFFF, 2px 2px 0px 1px #414141;
-    margin: 10px 0% 0% 15px;
-    text-align: center;
-    line-height: 50px;
-}
-
-#customFileUpload:active {
-    box-shadow: inset 2px 2px 0px 0px gray, inset -2px -2px 0px 0px gray;
-}
-
 #fileMenu {
     height: 59px;
     width: 120px;
@@ -276,6 +306,7 @@ body {
     top: 10.5%;
     left: 0%;
     box-shadow: inset 3px 3px 0px 0px #FFFFFF, 2px 2px 0px 2px #3b3b3b;
+    z-index: 1;
 }
 
 #fileMenu label, #fileMenu span {
@@ -289,6 +320,21 @@ body {
 
 #fileMenu span:hover, #fileMenu label:hover {
     background-color: #adadad;
+}
+
+#fileCountBox {
+    box-shadow: inset 2px 2px 0px 0px gray, inset -2px -2px 0px 0px #FFFFFF;
+    width: 98%;
+    height: 30px;
+    top: 0%;
+    position: relative;
+    margin: 3px 0px 0px 8px;
+}
+
+#fileCount {
+    font-size: 20px;
+    line-height: 34px;
+    margin: 0px 0px 0px 6px;
 }
 
 
@@ -306,6 +352,7 @@ body {
     flex-basis: 25%;
     margin: 1em 3em;
     max-width: 12%;
+    cursor: pointer;
 }
 
 .fileIconStyle {
@@ -329,24 +376,22 @@ body {
     top: 10;
 }
 
+#chosenOne {
+    box-shadow: 0px 20px 0px -10px #FFFFFF, 0px -20px 0px -10px #FFFFFF, 20px 0px 0px -10px #FFFFFF, -20px 0px 0px -10px #FFFFFF, 0px 0px 0px 10px #051E80;
+}
+
 /*
     CSS for the login page.
 */
-
-body {
-    background: rgb(47, 124, 118);
-    color: black;
-    font-family: 'MS';
-}
 
 #loginWindow {
     background: #d2d2d2;
     height: 300px;
     width: 600px;
     box-shadow: inset 3px 3px 0px 0px #FFFFFF, 2px 2px 0px 2px #3b3b3b;
-    left: 70%;
+    left: 30%;
     position: relative;
-    margin-top: 30%;
+    margin-top: 15%;
 }
 
 #loginWindowBar {
@@ -374,6 +419,8 @@ body {
     display: flex;
     flex-direction: column;
     margin-left: 20px;
+    top: 15%;
+    position: relative;
 }
 
 #loginInput input {
@@ -386,10 +433,21 @@ body {
     padding: 5px 0px 0px 5px;
 }
 
-#login {
-    width: 100px !important;
-    font-size: 15px !important;
-    margin: 0px 0px 0px 50px;
+.login {
+    border-radius: 0%;
+    box-shadow: 1px 1px 0px 1px black, 0px 0px 0px 1px black;
+    width: 100px;
+    font-size: 15px;
+    font-family: 'MS';
+    position: relative;
+    text-align: center;
+    left: 41%;
+    height: 20px;
+    line-height: 23px;
+}
+
+.login:active {
+    box-shadow: inset 1px 1px 0px 1px black, 0px 0px 0px 1px black;
 }
 
 #loginInput label {
@@ -409,20 +467,10 @@ input[type=text] {
     box-shadow: inset 2px 2px 0px 0px black, 1px 1px 0px 0px #FFFFFF;
 }
 
-input[type=password] {
-    border-radius: 0%;
-    box-shadow: inset 2px 2px 0px 0px black, 1px 1px 0px 0px #FFFFFF;
-}
-
-input[type=submit] {
-    border-radius: 0%;
-    box-shadow: 1px 1px 0px 1px black, 0px 0px 0px 1px black;
-}
-
 #loginHelpWindow {
     background: #d2d2d2;
     box-shadow: inset 3px 3px 0px 0px #FFFFFF, 2px 2px 0px 2px #3b3b3b;
-    height: 500px;
+    height: 350px;
     width: 300px;
     position: relative;
     left: 180%;
@@ -443,7 +491,7 @@ input[type=submit] {
 
 #loginHelpPage {
     width: 96%;
-    height: 89%;
+    height: 84%;
     background: rgb(255, 246, 205);
     margin: 7px 0px 0px 8px;
     box-shadow: inset 4px 4px 0px 0px rgb(95, 95, 95), inset -4px -4px 0px 0px #cacaca;
@@ -459,5 +507,51 @@ input[type=submit] {
     margin: 0% 0px 0px 10px;
     padding: 8%;
     text-align: justify;
-    font-size: 13px;
+    font-size: 15px;
+}
+
+#customGoogle {
+    background: #d2d2d2;
+    border: 1px black solid;
+    width: 50px;
+    height: 30px;
+}
+
+
+
+/*
+    Attempt at making the webpage readable on other screens.
+*/
+
+
+@media only screen and (max-width: 1000px){
+    #comparisonWindow {
+        left: 10%;
+    }
+    #helpWindow {
+        left: -40%;
+        bottom: 150px;
+        height: 300px;
+        width: 500px;   
+    }
+
+    #helpPage {
+        width: 97%;
+        height: 81%;
+    }
+
+    #helpPage li {
+        margin: 0% 0px 0px 10px;
+        padding: 1% 5% 1% 0%;
+        text-align: justify;
+        font-size: 14px;
+    }
+
+    #loginWindow {
+        left: 20%;
+    }
+    #loginHelpWindow {
+        left: 90%;
+        bottom: 100px; 
+    }
 }

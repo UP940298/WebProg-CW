@@ -6,6 +6,9 @@ var xButton = document.getElementById('comparisonWindowX');
 var minButton = document.getElementById('comparisonWindow-');
 var fileButton = document.getElementById('comparisonWindowFile');
 var helpButton = document.getElementById('comparisonWindowHelp');
+var startMenu = document.getElementById('startMenu');
+let startButt = document.getElementById('startButt');
+let startMenuPlagButton = document.getElementById('plagButton');
 
 function openDetector(button) {
 
@@ -37,27 +40,23 @@ minButton.addEventListener('click', function () {
     openDetector('-');
 });
 
-startBar.addEventListener('click', function () {
-    openDetector('start');
-});
-
 let fileMenu = document.getElementById('fileMenu');
 
 fileButton.addEventListener('click', function () {
-    if (fileMenu.style.display == 'none') {
-        fileMenu.style.display = 'block';
+    if (fileMenu.style.visibility == 'hidden') {
+        fileMenu.style.visibility = 'visible';
     } else {
-        fileMenu.style.display = 'none';
+        fileMenu.style.visibility = 'hidden';
     }
 });
 
 let help = document.getElementById('help');
 
 helpButton.addEventListener('click', function () {
-    if (help.style.display == 'none') {
-        help.style.display = 'block';
+    if (help.style.visibility == 'hidden') {
+        help.style.visibility = 'visible';
     } else {
-        help.style.display = 'none';
+        help.style.visibility = 'hidden';
     }
 });
 
@@ -81,4 +80,27 @@ document.addEventListener('keydown', function (event) {
     } else if (event.key == "f" && comparisonWindow.style.visibility == 'visible' && fileMenu.style.display == 'block') {
         fileMenu.style.display = 'none';
     }
+});
+
+function time() {
+    var today = new Date();
+    document.getElementById('time').innerHTML = today.toLocaleString('en-GB', { hour: 'numeric', minute: 'numeric', hour12: true });
+    var timer = setTimeout(time, 1000);
+}
+
+startButt.addEventListener('click', function () {
+
+    if (startMenu.style.visibility == 'hidden') {
+        startMenu.style.visibility = 'visible';
+        startButt.id = 'clickedStartButt';
+    } else {
+        startMenu.style.visibility = 'hidden';
+        startButt.id = 'startButt';
+    }
+});
+
+startMenuPlagButton.addEventListener('click', function () {
+    comparisonWindow.style.visibility = 'visible';
+    startMenu.style.visibility = 'hidden';
+    startButt.id = 'startButt';
 });

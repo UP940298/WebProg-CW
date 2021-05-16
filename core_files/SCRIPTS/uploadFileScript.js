@@ -1,5 +1,6 @@
 const manualInput = document.querySelector("#manualInput");
 const fileLoadedDiv = document.querySelector("#fileLoadedDiv");
+const fileObject = [];
 
 //Prevents the browser default behaviour of opening the file instantly.
 function dragOverFile(file) {
@@ -48,7 +49,6 @@ function manualInputFile() {
     const file_list = manualInput.files;
 
     for (let file of file_list) {
-        console.log(file);
 
         let manualFileDiv = document.createElement('div');
         let manualFileIcon = document.createElement('span');
@@ -59,6 +59,16 @@ function manualInputFile() {
         manualFileIcon.innerHTML = convert(file.name);
 
         manualFileDiv.classList.add("fileDivContainer");
+        manualFileDiv.addEventListener('click', function () {
+
+            if (fileLoadedDiv.querySelector('#chosenOne') == null) {
+                manualFileDiv.id = 'chosenOne';
+            } else {
+                manualFileDiv.id = '';
+            }
+            isChosen(fileObject);
+        });
+
         manualFileIcon.classList.add("fileIconStyle");
         manualFileText.classList.add("fileTextStyle");
 
@@ -68,7 +78,26 @@ function manualInputFile() {
 
         readFileToText(file);
     }
+
     printFiles(file_list.length);
+}
+
+function isChosen(fileObject) {
+
+    let fileName = "";
+
+    if (fileLoadedDiv.querySelector('#chosenOne') != null) {
+        let temp = fileLoadedDiv.querySelector('#chosenOne');
+        fileName = temp.childNodes[length].textContent;
+    }
+
+    for (let item in fileObject) {
+        if (fileObject[item].name == fileName) {
+            fileObject[item].chosen = true;
+        }
+    }
+
+    sortFiles(fileObject);
 }
 
 /**
@@ -77,27 +106,38 @@ function manualInputFile() {
  */
 
 function readFileToText(file) {
+
     var reader = new FileReader();
 
     reader.onload = function (fileUploaded) {
         var textFile = fileUploaded.target.result;
 
-        let ext = grabExt(file);
-
-        switch (ext.toLowerCase()) {
-            case 'html':
-                cleanUpHTML(textFile);
-            case 'js':
-                cleanUpJS(textFile);
-            case 'css':
-                cleanUpCSS(textFile);
-        }
+        isExtension(file, textFile);
     }
     reader.readAsText(file);
 }
 
-function cleanUpJS(jsRaw) {
-    let splitJS = jsRaw.split(" ");
+
+function isExtension(file, textFile) {
+
+    let ext = grabExt(file);
+
+    switch (ext.toLowerCase()) {
+        case 'html':
+            cleanUpHTML(file, textFile);
+            break;
+        case 'js':
+            cleanUpJS(file, textFile);
+            break;
+        case 'css':
+            cleanUpCSS(file, textFile);
+            break;
+    }
+}
+
+
+function cleanUpJS(file, jsRaw) {
+    let splitJS = jsRaw.split(/ |\n|;|{|}|[()]|=|"|,/);
 
     for (var i = splitJS.length - 1; i >= 0; i--) {
         if (splitJS[i] == "") {
@@ -109,20 +149,51 @@ function cleanUpJS(jsRaw) {
         return elem.trim();
     });
 
-    sortFiles(jsClean);
+    intoObject(file, jsClean);
 }
 
-function cleanUpCSS(cssRaw) {
-    let splitCSS = cssRaw.split(" ");
-    sortFiles(splitCSS);
+function cleanUpCSS(file, cssRaw) {
+    let splitCSS = cssRaw.split(/ |\n|;|:|,|{|}/);
+
+    for (var i = splitCSS.length - 1; i >= 0; i--) {
+        if (splitCSS[i] == "") {
+            splitCSS.splice(i, 1);
+        }
+    }
+
+    let cssClean = splitCSS.map(function (elem) {
+        return elem.trim();
+    });
+
+    intoObject(file, cssClean);
 }
 
-function cleanUpHTML(htmlRaw) {
-    let splitHTML = htmlRaw.split(" ");
-    sortFiles(splitHTML);
+function cleanUpHTML(file, htmlRaw) {
+    let splitHTML = htmlRaw.split(/ |\n|=|;|"/);
+
+    for (var i = splitHTML.length - 1; i >= 0; i--) {
+        if (splitHTML[i] == "") {
+            splitHTML.splice(i, 1);
+        }
+    }
+
+    let htmlClean = splitHTML.map(function (elem) {
+        return elem.trim();
+    });
+
+    intoObject(file, htmlClean);
 }
 
 function grabExt(extRaw) {
     let ext = extRaw.name.split('.');
     return ext[ext.length - 1];
+}
+
+function intoObject(file, item) {
+    let storeFile = {
+        chosen: "",
+        name: file.name,
+        file: item
+    }
+    fileObject.push(storeFile);
 }
