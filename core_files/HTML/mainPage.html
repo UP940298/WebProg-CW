@@ -3,45 +3,62 @@
 <link rel="stylesheet" type="text/css" href="../STYLE/mainStyle.css">
 
 <head>
-    <title>
-        Plagiarism detector
-    </title>
+    <title>Main page - Plagiarism detector</title>
+
     <meta name="google-signin-client_id"
         content="694851134796-76a41j9ncro012flr2ha74sssapha354.apps.googleusercontent.com">
 </head>
 
+<!-- When body loads (basically when html loads), the time function will load to keep the time updated. -->
+
 <body onload="time();">
 
-    <div id="comparisonWindow" style="visibility: hidden;">
+    <!-- Main window div - just a container to keep it hidden until the user clicks the start button. -->
+    <div id="fileUploadWindow" style="visibility: hidden;">
 
-        <span id="comparisonWindowBar">Plagiarism Checker</span>
+        <span id="fileUploadWindowBar">Plagiarism Checker</span>
+        <button id="fileUploadWindowFileButton"><span id="under">F</span>ile</button>
 
-        <button id="comparisonWindowFile"><span id="under">F</span>ile</button>
-        <div id="fileMenu" style="visibility: hidden;">
-            <span>Run detector</span>
+        <!-- Div that contains the file menu, opens a little menu when "file" is clicked. Contains the input button for manually selecting files to upload. -->
+        <div id="fileButtonMenu" style="visibility: hidden;">
+            <span id="runDetector">Run detector</span>
             <label>
                 <input type="file" id="manualInput" oninput="manualInputFile(); getFile();" multiple>
                 Upload files
             </label>
         </div>
 
-        <button id="comparisonWindowHelp"><span id="under">H</span>elp</button>
+        <!-- Various buttons for different features: help window, close the window and minimize the window. -->
+        <button id="fileUploadWindowHelp"><span id="under">H</span>elp</button>
 
-        <button id="comparisonWindowX">X</button>
+        <button id="fileUploadWindowX">X</button>
 
-        <button id="comparisonWindow-">-</button>
+        <button id="fileUploadWindow-">-</button>
 
+        <!-- A div that acts as an area for dragging and dropping files to be uploaded. -->
         <div id="dropZone" ondrop="dropFile(event);" ondragover="dragOverFile(event);">
             <div>
                 <div id="fileLoadedDiv">
                 </div>
             </div>
         </div>
+
+        <!-- Box at the bottom of the main window that keeps count of the number of files that have been uploaded to the window. -->
         <div id="fileCountBox">
             <span id="fileCount"></span>
         </div>
     </div>
 
+    <!-- Window that shows a progress bar when running the comparison function. -->
+    <div id="progressWindowDiv">
+        <div id="progressWindowBar"></div>
+        <span>Comparing files..</span>
+        <div id="progressBar">
+            <div id="progress"></div>
+        </div>
+    </div>
+
+    <!-- Help window div. Stays hidden until users clicks the help button. -->
     <div id="help" style="visibility: hidden;">
         <div id="helpWindow">
             <span id="helpBar">Help</span>
@@ -60,8 +77,7 @@
         </div>
     </div>
 
-    <button id="a">butt</button>
-
+    <!-- Div that contains the start menu, visible only once the user clicks the start button. Contains the onclick event to sign the user out once they click the sign out button. -->
     <div>
         <div id="startMenu" style="visibility: hidden;">
             <div id='plagButton' style="padding-top: 10px;"><span>Plagiarism Checker</span></div>
@@ -69,6 +85,8 @@
             <div style="padding-top: 10px; top: -20px;"><span onclick="signOut();">Sign out</span></div>
             <span id="decal"></span>
         </div>
+
+        <!-- Script that loads the google api and handles the sign out event. If user clicks sign out, the api signs out the user and redirects the page to the login page. -->
         <script>
             function onLoad() {
                 gapi.load('auth2', function () {
@@ -87,6 +105,7 @@
     </div>
 </body>
 
+<!-- Div that contains the start bar at the bottom of the window. Contains the time and the start menu. -->
 <footer>
     <div id="startBar">
         <button id="startButt">
@@ -99,10 +118,10 @@
     </div>
 </footer>
 
-<script type="application/javascript" src="../SCRIPTS/detectAlgo.js"></script>
+<script type="application/javascript" src="../SCRIPTS/socketFilesToServer.js"></script>
 <script type="application/javascript" src="../SCRIPTS/windowsHandler.js"></script>
-<script type="application/javascript" src="../SCRIPTS/uploadFileScript.js"></script>
-<script type="application/javascript" src="../SCRIPTS/binary.js"></script>
+<script type="application/javascript" src="../SCRIPTS/uploadFilesAndSort.js"></script>
+<script type="application/javascript" src="../SCRIPTS/convertStringToBinary.js"></script>
 <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
 </html>

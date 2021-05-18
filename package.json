@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "setup": "node ./core_files/database_files/database_connect.js"
+    "setup": "node ./core_files/database_files/createDatabase.js"
   },
   "repository": {
     "type": "git",

@@ -14,29 +14,42 @@ function dragOverFile(file) {
  */
 
 function dropFile(file) {
+
     file.preventDefault();
 
     if (file.dataTransfer.items) {
-        let fileInfo = "";
         for (var i = 0; i < file.dataTransfer.items.length; i++) {
             var rawFile = file.dataTransfer.items[i].getAsFile();
 
-            console.log(rawFile.name);
-
             let fileDiv = document.createElement('div');
-            let fileImg = document.createElement('img');
+            let fileIcon = document.createElement('span');
             let fileText = document.createElement('span');
 
             fileText.innerHTML = rawFile.name;
-            fileImg.src = "../images/file.png";
+            fileIcon.innerHTML = convert(rawFile.name);
 
-            fileImg.classList.add("fileImgStyle");
+            fileDiv.addEventListener('click', function () {
+
+                if (fileLoadedDiv.querySelector('#chosenOne') == null) {
+                    fileDiv.id = 'chosenOne';
+                } else {
+                    fileDiv.id = '';
+                }
+                isChosen(fileObject);
+            });
+
+            fileDiv.classList.add("fileDivContainer");
+            fileIcon.classList.add("fileIconStyle");
             fileText.classList.add("fileTextStyle");
 
-            fileDiv.appendChild(fileImg);
+            fileDiv.appendChild(fileIcon);
             fileDiv.appendChild(fileText);
             fileLoadedDiv.appendChild(fileDiv);
+
+            readFileToText(rawFile);
         }
+
+        printFiles(file.dataTransfer.items.length);
     }
 }
 
@@ -46,16 +59,15 @@ function dropFile(file) {
 **/
 
 function manualInputFile() {
-    const file_list = manualInput.files;
+    const fileListManual = manualInput.files;
 
-    for (let file of file_list) {
+    for (let file of fileListManual) {
 
         let manualFileDiv = document.createElement('div');
         let manualFileIcon = document.createElement('span');
         let manualFileText = document.createElement('span');
 
         manualFileText.innerHTML = file.name;
-
         manualFileIcon.innerHTML = convert(file.name);
 
         manualFileDiv.classList.add("fileDivContainer");
@@ -79,25 +91,7 @@ function manualInputFile() {
         readFileToText(file);
     }
 
-    printFiles(file_list.length);
-}
-
-function isChosen(fileObject) {
-
-    let fileName = "";
-
-    if (fileLoadedDiv.querySelector('#chosenOne') != null) {
-        let temp = fileLoadedDiv.querySelector('#chosenOne');
-        fileName = temp.childNodes[length].textContent;
-    }
-
-    for (let item in fileObject) {
-        if (fileObject[item].name == fileName) {
-            fileObject[item].chosen = true;
-        }
-    }
-
-    sortFiles(fileObject);
+    printFiles(fileListManual.length);
 }
 
 /**
@@ -117,6 +111,10 @@ function readFileToText(file) {
     reader.readAsText(file);
 }
 
+/*
+    Small function that takes the raw file and "readastext" file and checks the extension.
+    Sends the files to the appropriate function.
+*/
 
 function isExtension(file, textFile) {
 
@@ -135,8 +133,20 @@ function isExtension(file, textFile) {
     }
 }
 
+// Function that splits the files name to find the extension.
 
-function cleanUpJS(file, jsRaw) {
+function grabExt(extRaw) {
+    let ext = extRaw.name.split('.');
+    return ext[ext.length - 1];
+}
+
+/*
+    Three functions that sort through the raw files to split them into strings.
+    Using regex to find each punctuation that each file type may use.
+    Then it trims the whitespace that all code files have when readAsText.
+*/
+
+function cleanUpJS(rawFile, jsRaw) {
     let splitJS = jsRaw.split(/ |\n|;|{|}|[()]|=|"|,/);
 
     for (var i = splitJS.length - 1; i >= 0; i--) {
@@ -149,10 +159,10 @@ function cleanUpJS(file, jsRaw) {
         return elem.trim();
     });
 
-    intoObject(file, jsClean);
+    intoObject(rawFile, jsClean);
 }
 
-function cleanUpCSS(file, cssRaw) {
+function cleanUpCSS(rawFile, cssRaw) {
     let splitCSS = cssRaw.split(/ |\n|;|:|,|{|}/);
 
     for (var i = splitCSS.length - 1; i >= 0; i--) {
@@ -165,10 +175,10 @@ function cleanUpCSS(file, cssRaw) {
         return elem.trim();
     });
 
-    intoObject(file, cssClean);
+    intoObject(rawFile, cssClean);
 }
 
-function cleanUpHTML(file, htmlRaw) {
+function cleanUpHTML(rawFile, htmlRaw) {
     let splitHTML = htmlRaw.split(/ |\n|=|;|"/);
 
     for (var i = splitHTML.length - 1; i >= 0; i--) {
@@ -181,22 +191,22 @@ function cleanUpHTML(file, htmlRaw) {
         return elem.trim();
     });
 
-    intoObject(file, htmlClean);
+    intoObject(rawFile, htmlClean);
 }
 
-function grabExt(extRaw) {
-    let ext = extRaw.name.split('.');
-    return ext[ext.length - 1];
-}
+// Adds the now clean files to the fileObject array. For use in the compare files script.
 
-function intoObject(file, item) {
+function intoObject(rawFile, cleanFile) {
     let storeFile = {
         chosen: "",
-        name: file.name,
-        file: item
+        name: rawFile.name,
+        file: cleanFile
     }
     fileObject.push(storeFile);
 }
+
+// Function that will take all files in the database and display them in the main page.
+// Allows user to use previously uploaded files in their comparisons.
 
 function showStoredFiles(file) {
     let storedFileDiv = document.createElement('div');
@@ -227,4 +237,28 @@ function showStoredFiles(file) {
     storedFileDiv.appendChild(storedFileIcon);
     storedFileDiv.appendChild(storedFileText);
     fileLoadedDiv.appendChild(storedFileDiv);
+}
+
+/*
+    Function that takes the fileObject and checks if any have been "clicked" (checks if any file has the #chosenOne id).
+    Takes that function and sets the "chosen" key to true.
+    Sends the fileObject to the sortFiles script, this function is the last function in this script.
+*/
+
+function isChosen(fileObject) {
+
+    let fileName = "";
+
+    if (fileLoadedDiv.querySelector('#chosenOne') != null) {
+        let temp = fileLoadedDiv.querySelector('#chosenOne');
+        fileName = temp.childNodes[length].textContent;
+    }
+
+    for (let item in fileObject) {
+        if (fileObject[item].name == fileName) {
+            fileObject[item].chosen = true;
+        }
+    }
+
+    sortFiles(fileObject);
 }

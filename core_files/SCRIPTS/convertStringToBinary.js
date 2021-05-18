@@ -1,3 +1,6 @@
+/*
+    Small script that turns the file names into binary to create an icon with the binary name.
+*/
 var binAlpha = {
     'a': 97,
     'b': 98,

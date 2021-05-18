@@ -2,17 +2,22 @@
 
 <link rel="stylesheet" type="text/css" href="../STYLE/mainStyle.css">
 
-
 <head>
+    <title>Login page - Plagiarism Checker</title>
+
     <meta name="google-signin-client_id"
         content="694851134796-76a41j9ncro012flr2ha74sssapha354.apps.googleusercontent.com">
-    <title>Login page</title>
 </head>
 
 <body>
+    <!-- The main login window -->
     <div id="loginWindow">
+        <!-- Blue bar that appears on the window for aesthetics. -->
         <span id="loginWindowBar">User login</span>
+        <!-- Help button that opens another window that contains help. -->
         <button id="loginHelpButton">?</button>
+
+        <!-- Inline script that adds an event listener to the help button to make the help window visible to the user, changes the display from none to block and back again. -->
         <script>
             document.getElementById('loginHelpButton').addEventListener('click', function () {
                 let helpWindow = document.getElementById('loginHelp');
@@ -25,17 +30,17 @@
 
         </script>
 
+        <!-- Div that contains the username input, label and submit button. -->
         <div id="loginInput">
             <label for="userLogin" id="labelUser"><span id="under">U</span>ser name:</label>
             <input id="userLogin" type="text" name="username" required>
             <div id="customSign" class="login"><span>OK</span></div>
         </div>
 
+        <!-- Inline script that loads the google api on html start. Attaches a click handler to the auth process, if the user logs in successfully then the window redirects to the mainpage. -->
         <script>
             window.onload = function () {
-
                 gapi.load('auth2', function () {
-
                     var auth2 = gapi.auth2.init({
                         client_id: '694851134796-76a41j9ncro012flr2ha74sssapha354.apps.googleusercontent.com',
                         cookiepolicy: 'single_host_origin',
@@ -45,7 +50,7 @@
                     auth2.attachClickHandler(element, {},
                         function (googleUser) {
                             if (googleUser) {
-                                console.log('Successful sign in.');
+                                console.log("Successful sign in.");
                                 window.location.replace('http://localhost:8080/home');
                             } else {
                                 console.log('Failed sign in.');
@@ -58,9 +63,13 @@
         </script>
     </div>
 
+    <!-- Opens the help window. First div is a container to hide the entire window. -->
     <div id="loginHelp" style="display: none;">
+        <!-- The main window of the help window. -->
         <div id="loginHelpWindow">
+            <!-- The blue bar that is just for appearance. -->
             <span id="loginHelpBar">Help</span>
+            <!-- The page that contains all the text. -->
             <div id="loginHelpPage">
                 <h1>Using the login page:</h1>
                 <ul>
@@ -79,4 +88,4 @@
     </div>
 </body>
 
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
