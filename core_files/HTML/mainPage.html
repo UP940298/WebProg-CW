@@ -21,7 +21,7 @@
 
         <!-- Div that contains the file menu, opens a little menu when "file" is clicked. Contains the input button for manually selecting files to upload. -->
         <div id="fileButtonMenu" style="visibility: hidden;">
-            <span id="runDetector">Run detector</span>
+            <span id="runDetector" onclick="progress();">Run detector</span>
             <label>
                 <input type="file" id="manualInput" oninput="manualInputFile(); getFile();" multiple>
                 Upload files
@@ -71,7 +71,9 @@
                     <li>Once they are uploaded and are appearing in the window, please click on the main file that is
                         being compared. This file will be highlighted to show it is the "main" file. Then click on the
                         File button again and select "Run detector".</li>
-                    <li></li>
+                    <li>The script will run and a window will appear with the output of each file being compared. The
+                        similarity is based on a rating between 0 and 1 for each word in the files which is summed up to
+                        make a total similarity rating.</li>
                 </ul>
             </div>
         </div>
@@ -119,9 +121,9 @@
 </footer>
 
 <script type="application/javascript" src="../SCRIPTS/socketFilesToServer.js"></script>
-<script type="application/javascript" src="../SCRIPTS/windowsHandler.js"></script>
 <script type="application/javascript" src="../SCRIPTS/uploadFilesAndSort.js"></script>
 <script type="application/javascript" src="../SCRIPTS/convertStringToBinary.js"></script>
+<script type="application/javascript" src="../SCRIPTS/windowsHandler.js"></script>
 <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
 </html>

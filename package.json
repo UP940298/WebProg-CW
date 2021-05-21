@@ -23,5 +23,8 @@
     "sqlite3": "^5.0.2",
     "string-similarity": "^4.0.4",
     "ws": "^7.4.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.26.0"
   }
 }

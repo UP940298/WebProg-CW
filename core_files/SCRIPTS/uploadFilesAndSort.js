@@ -198,6 +198,7 @@ function cleanUpHTML(rawFile, htmlRaw) {
 
 function intoObject(rawFile, cleanFile) {
     let storeFile = {
+        user: localStorage.getItem("username"),
         chosen: "",
         name: rawFile.name,
         file: cleanFile

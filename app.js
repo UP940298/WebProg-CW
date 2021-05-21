@@ -4,6 +4,7 @@ const app = express();
 const http = require('http');
 const ws = require('ws');
 const compare = require('./core_files/SCRIPTS/compareFiles');
+const dbQ = require('./core_files/database_files/queryDatabase');
 
 app.use(express.static(__dirname + '/core_files'));
 
@@ -11,9 +12,13 @@ app.use(express.static(__dirname + '/core_files'));
 const server = http.createServer(app);
 
 function listener(socket) {
+
     socket.on('message', function (event) {
-        var fileObject = compare.compareFilesMain(event);
+        const fileObject = compare.compareFilesMain(event);
         socket.send(JSON.stringify(fileObject));
+
+        //dbQ.insertFilesInDb(JSON.parse(event));
+        //dbQ.deleteAllFromDb();
     });
 }
 

@@ -1,3 +1,4 @@
+
 /*
     Websocket script that starts a new socket route and sends the fileObject once it has been properly populated, sorted and cleaned after being uploaded.
     Sends the fileObject to app.js which sends it to compareFiles to be compared before being returned.
@@ -8,8 +9,6 @@ function sortFiles(fileObject) {
     const ws = new WebSocket("ws://" + window.location.hostname + ":8081/");
     ws.binaryType = 'arraybuffer';
 
-    console.log(fileObject);
-
     function toServer() {
         ws.send(JSON.stringify(fileObject));
     }
@@ -17,16 +16,16 @@ function sortFiles(fileObject) {
     function fromServer(event) {
         createReport(JSON.parse(event.data));
     }
-
-    const runDetectorHTML = document.getElementById('runDetector');
-    runDetectorHTML.addEventListener("click", toServer);
-    ws.addEventListener("message", fromServer);
+    const runDetect = document.getElementById('runDetector');
+    runDetect.addEventListener('click', function () {
+        progress();
+        setTimeout(toServer, 5000);
+    });
+    ws.addEventListener('message', fromServer);
 
 }
 
 function createReport(similarityArr) {
-
-    console.log(similarityArr);
 
     let report = document.createElement('div');
     document.body.appendChild(report);
@@ -45,7 +44,28 @@ function createReport(similarityArr) {
     reportText.id = 'reportText';
 
     for (let item in similarityArr) {
-        reportText.innerHTML += 'name: ' + similarityArr[item].name + ' text: ' + similarityArr[item].similarity;
-        reportText.innerHTML += '\n';
+        //reportText.innerHTML += 'Name of file: ' + similarityArr[item].name + ' Similarity to main file: ' + similarityArr[item].similarity;
+        let tempDiv = document.createElement('div');
+        let tempNameSpan = document.createElement('span');
+        let tempSimSpan = document.createElement('span');
+        let tempNameText = document.createElement('p');
+        let tempSimText = document.createElement('p');
+
+        reportPage.appendChild(tempDiv);
+        tempDiv.appendChild(tempNameSpan);
+        tempDiv.appendChild(tempNameText);
+        tempDiv.appendChild(tempSimSpan);
+        tempDiv.appendChild(tempSimText);
+
+        tempNameSpan.innerHTML = "Name of file: ";
+        tempSimSpan.innerHTML = "Similarity to main file: ";
+        tempNameText.innerHTML = similarityArr[item].name;
+        tempSimText.innerHTML = (similarityArr[item].similarity).toFixed(3);
+
+        tempDiv.id = 'reportTextDiv';
+        tempNameSpan.id = 'reportTextFill';
+        tempSimSpan.id = 'reportTextFill';
+        tempNameText.id = 'reportTextFill';
+        tempSimText.id = 'reportTextFill';
     }
 }

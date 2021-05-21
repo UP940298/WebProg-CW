@@ -9,7 +9,7 @@ const db = new sqlite3.Database(__dirname + '/plagiarism_web');
 */
 
 db.serialize(function () {
-    db.run("CREATE TABLE IF NOT EXISTS files (chosen BOOLEAN, name CHAR(30), file BLOB)", function (err) {
+    db.run("CREATE TABLE IF NOT EXISTS files (user CHAR(30), chosen BOOLEAN, name CHAR(30), file BLOB)", function (err) {
         if (err) {
             console.log(err.message);
         }

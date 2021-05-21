@@ -34,11 +34,16 @@
         <div id="loginInput">
             <label for="userLogin" id="labelUser"><span id="under">U</span>ser name:</label>
             <input id="userLogin" type="text" name="username" required>
-            <div id="customSign" class="login"><span>OK</span></div>
+            <div id="customSign" class="login" onclick="storeUser();"><span>OK</span></div>
         </div>
 
         <!-- Inline script that loads the google api on html start. Attaches a click handler to the auth process, if the user logs in successfully then the window redirects to the mainpage. -->
         <script>
+            function storeUser() {
+                let user = document.getElementById('userLogin').value;
+                localStorage.setItem("username", user);
+            }
+
             window.onload = function () {
                 gapi.load('auth2', function () {
                     var auth2 = gapi.auth2.init({

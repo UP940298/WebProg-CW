@@ -33,7 +33,7 @@ function openDetector(button) {
     if (startBar.querySelector("#openWindow") == null && button != '-') {
         startBar.appendChild(windowsBarOpenWindow);
     } else if (startBar.querySelector("#openWindow") != null && button == 'x') {
-        startBar.removeChild(windowsBarOpenWindow);
+        startBar.removeChild(startBar.querySelector('#openWindow'));
     } else if (startBar.querySelector("#openWindow") != null && button == '-') {
         document.getElementById('openWindow').id = 'minWindow';
     } else if (startBar.querySelector("#minWindow") != null && button == '-') {

@@ -2,8 +2,7 @@
     Import string similarity module from npm and the database file. 
 */
 
-const stringSimilarity = require('string-similarity');
-const dbfiles = require('../database_files/queryDatabase');
+const strSim = require('string-similarity');
 
 /*
     Main function that takes the file object and compares each string of each file to the main file. Uses the string similarity module.
@@ -17,18 +16,20 @@ function compareFilesMain(file) {
     let objArr = [];
 
     let fileObject = JSON.parse(file);
-    dbfiles.insertFilesInDb(fileObject);
+    console.log("parse" + fileObject);
 
     //Decides which file of the object is the main file.
     for (let item in fileObject) {
         if (fileObject[item].chosen) {
             mainFile = fileObject[item].file;
+            fileObject.splice(item, 1);
         }
     }
 
     //Loops through each file, compares each string of the file with each string of the main file.
     //Checks which file is bigger to use as the loop length.
-    for (let i = 1; i < fileObject.length; i++) {
+
+    for (let i = 0; i < fileObject.length; i++) {
 
         let len1 = 0;
         let len2 = 0;
@@ -37,15 +38,19 @@ function compareFilesMain(file) {
             len1 = fileObject[i].file.length;
             len2 = mainFile.length;
         } else {
-            len = mainFile.length;
+            len1 = mainFile.length;
             len2 = fileObject[i].file.length;
         }
 
+        console.log(len1, len2);
+
         for (let j = 0; j < len1; j++) {
+
             for (let k = 0; k < len2; k++) {
-                sumSim += stringSimilarity.compareTwoStrings(mainFile[j], fileObject[i].file[j]);
+                sumSim += strSim.compareTwoStrings(mainFile[j], fileObject[i].file[j]);
             }
         }
+
         let obj = {
             name: fileObject[i].name,
             similarity: sumSim
@@ -55,14 +60,7 @@ function compareFilesMain(file) {
         objArr.push(obj);
     }
 
-    console.log("arr: " + sumSimArr);
-
     return objArr;
-}
-
-//
-function compareFilesAll(file) {
-
 }
 
 module.exports = { compareFilesMain };

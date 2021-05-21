@@ -1,3 +1,5 @@
 # Plagiarism Checker
 
 # How to use: 
+
+To use the webpage, please "npm install" within the directory to install all the necessary modules. Then please "npm start" to start the server. Head to localhost:8080/ to find the login page, enter your username and click "ok". This will ask you to log in with google authentication, once compeleted you will be redirected to the main page. On the main page, click "start" and then "plagiarism checker" to open the window. You can then eitehr manually input the files by going to the file menu and click "upload files" or by dragging the files into the open window. Once that is done, click the file that is to be the main file (the file to compare all other files to) and click "run detector". This will take a few seconds and will then show a report on how similar each file is to the main file, based on a rating between each string which is then summed up. This rating can be compared to the "perfect" rating which is the rating if the two files were the exact same.

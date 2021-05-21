@@ -199,6 +199,7 @@ body {
     position: relative;
     left: 55%;
     bottom: 550px;
+    z-index: 2;
 }
 
 #help {
@@ -649,4 +650,25 @@ input[type=text] {
         left: 90%;
         bottom: 100px; 
     }
+}
+
+
+
+/* 
+    CSS for the similarity report
+*/
+
+#reportTextDiv {
+    padding: 0% 0% 2% 2%;
+    font-size: 16px;
+}
+
+#reportTextDiv span {
+    font-family: 'MSbold';
+    font-size: 16px;
+}
+
+#reportTextFill {
+    margin-left: 15px;
+    display: inline;
 }
